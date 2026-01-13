@@ -25,8 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${barlowSemi.variable} ${barlowCondensed.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      data-theme="tennys"
+      className={`${barlowSemi.variable} ${barlowCondensed.variable}`}
+    >
+      <body className="min-h-screen bg-base-100 font-sans text-base-content">
+        {children}
+      </body>
     </html>
   );
 }
