@@ -73,6 +73,8 @@ const incrementOpponent = (set: SetScore, side: "left" | "right") => {
   return set;
 };
 
+const asSetScore = (set: SetScore) => set;
+
 const trashIcon = (
   <svg
     aria-hidden="true"
@@ -145,30 +147,30 @@ export default function MatchCreatePage() {
         }
 
         if (set.winnerSide === null) {
-          return {
+          return asSetScore({
             ...set,
             ...applyBaseScore(side, 1),
             winnerSide: side,
             baseIndex: 1
-          };
+          });
         }
 
         if (set.winnerSide === side) {
           if (set.baseIndex === 1) {
-            return {
+            return asSetScore({
               ...set,
               ...applyBaseScore(side, 2),
               baseIndex: 2
-            };
+            });
           }
           if (set.baseIndex === 2) {
             return { ...EMPTY_SET };
           }
-          return {
+          return asSetScore({
             ...set,
             ...applyBaseScore(side, 1),
             baseIndex: 1
-          };
+          });
         }
 
         return incrementOpponent(set, side);
