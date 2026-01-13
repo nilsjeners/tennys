@@ -21,6 +21,23 @@ const teamStyles = {
   }
 } as const;
 
+const userIcon = (
+  <svg
+    aria-hidden="true"
+    className="h-4 w-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+    />
+  </svg>
+);
+
 const TeamAvatars = ({
   side,
   isDoubles
@@ -30,29 +47,40 @@ const TeamAvatars = ({
 }) => {
   const { primary, secondary } = teamStyles[side];
 
-  if (!isDoubles) {
-    return (
-      <div className="flex h-12 items-center justify-center">
-        <div className="avatar placeholder">
-          <div className={`h-12 w-12 rounded-full ring-4 ring-base-100 ${primary}`}>
-            <span className="text-sm font-semibold">A</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex h-12 items-center justify-center">
-      <div className="avatar-group -space-x-3">
-        <div className="avatar placeholder">
-          <div className={`h-12 w-12 rounded-full ring-4 ring-base-100 ${primary}`}>
-            <span className="text-sm font-semibold">A</span>
+      <div className="relative flex h-12 w-24 items-center justify-center">
+        <div
+          className={`absolute transition-all duration-300 ease-out ${
+            isDoubles ? "scale-75 -translate-x-2 opacity-0" : "scale-100 opacity-100"
+          }`}
+        >
+          <div className="avatar placeholder">
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-full ring-4 ring-base-100 ${primary}`}
+            >
+              {userIcon}
+            </div>
           </div>
         </div>
-        <div className="avatar placeholder">
-          <div className={`h-12 w-12 rounded-full ring-4 ring-base-100 ${secondary}`}>
-            <span className="text-sm font-semibold">B</span>
+        <div
+          className={`absolute flex items-center gap-2 transition-all duration-300 ease-out ${
+            isDoubles ? "scale-100 opacity-100" : "scale-75 translate-x-2 opacity-0"
+          }`}
+        >
+          <div className="avatar placeholder">
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-full ring-4 ring-base-100 ${primary}`}
+            >
+              {userIcon}
+            </div>
+          </div>
+          <div className="avatar placeholder">
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-full ring-4 ring-base-100 ${secondary}`}
+            >
+              {userIcon}
+            </div>
           </div>
         </div>
       </div>
@@ -98,9 +126,9 @@ export default function MatchResultClient() {
 
   const totalGames = leftGames + rightGames;
   const playerStrengthA =
-    totalGames > 0 ? Math.round(1000 * (leftGames / totalGames) + 500) : 500;
+    totalGames > 0 ? Math.round(1000 * (leftGames / totalGames) + 500) : 1000;
   const playerStrengthB =
-    totalGames > 0 ? Math.round(1000 * (rightGames / totalGames) + 500) : 500;
+    totalGames > 0 ? Math.round(1000 * (rightGames / totalGames) + 500) : 1000;
 
   const setCards = useMemo(
     () =>
