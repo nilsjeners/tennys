@@ -141,7 +141,7 @@ export default function MatchCreatePage() {
 
   const handleSideClick = (side: "left" | "right") => {
     setSets((prev) =>
-      prev.map((set, idx) => {
+      prev.map((set, idx): SetScore => {
         if (idx !== activeSetIndex) {
           return set;
         }
