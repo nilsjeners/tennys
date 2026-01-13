@@ -39,34 +39,34 @@ const applyBaseScore = (side: "left" | "right", baseIndex: 1 | 2) => {
   return baseIndex === 1 ? { left: 0, right: 6 } : { left: 5, right: 7 };
 };
 
-const incrementOpponent = (set: SetScore, side: "left" | "right") => {
+const incrementOpponent = (set: SetScore, side: "left" | "right"): SetScore => {
   if (set.winnerSide === "left" && side === "right") {
     if (set.left === 6 && set.right < 4) {
-      return { ...set, right: set.right + 1 };
+      return asSetScore({ ...set, right: set.right + 1 });
     }
     if (set.left === 6 && set.right === 4) {
-      return { ...set, left: 7, right: 5, baseIndex: 2 };
+      return asSetScore({ ...set, left: 7, right: 5, baseIndex: 2 });
     }
     if (set.left === 7 && set.right === 5) {
-      return { ...set, right: 6, baseIndex: 2 };
+      return asSetScore({ ...set, right: 6, baseIndex: 2 });
     }
     if (set.left === 7 && set.right < 5) {
-      return { ...set, right: set.right + 1, baseIndex: 2 };
+      return asSetScore({ ...set, right: set.right + 1, baseIndex: 2 });
     }
   }
 
   if (set.winnerSide === "right" && side === "left") {
     if (set.right === 6 && set.left < 4) {
-      return { ...set, left: set.left + 1 };
+      return asSetScore({ ...set, left: set.left + 1 });
     }
     if (set.right === 6 && set.left === 4) {
-      return { ...set, left: 5, right: 7, baseIndex: 2 };
+      return asSetScore({ ...set, left: 5, right: 7, baseIndex: 2 });
     }
     if (set.right === 7 && set.left === 5) {
-      return { ...set, left: 6, baseIndex: 2 };
+      return asSetScore({ ...set, left: 6, baseIndex: 2 });
     }
     if (set.right === 7 && set.left < 5) {
-      return { ...set, left: set.left + 1, baseIndex: 2 };
+      return asSetScore({ ...set, left: set.left + 1, baseIndex: 2 });
     }
   }
 
