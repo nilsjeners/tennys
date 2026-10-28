@@ -1,4 +1,4 @@
-import { action, internalMutation, mutation, type MutationCtx } from "./_generated/server";
+import { internalAction, internalMutation, type MutationCtx } from "./_generated/server";
 import { v } from "convex/values";
 import { components, internal } from "./_generated/api";
 import type { Id } from "./_generated/dataModel";
@@ -21,7 +21,7 @@ const TEST_PASSWORD = "tennys123";
 // seed opponents its user created (coach profiles), so existing dev accounts
 // keep a populated friends list in match setup. Idempotent.
 //   npx convex run migrations:linkSeedFriends
-export const linkSeedFriends = mutation({
+export const linkSeedFriends = internalMutation({
   args: {},
   handler: async (ctx) => {
     let created = 0;
@@ -49,7 +49,7 @@ export const linkSeedFriends = mutation({
 // One-off backfill for the TPRS v2 migration. Idempotent — safe to re-run.
 // Run once against the dev deployment after deploying the new schema:
 //   npx convex run migrations:backfillRatings
-export const backfillRatings = mutation({
+export const backfillRatings = internalMutation({
   args: {},
   handler: async (ctx) => {
     let profilesPatched = 0;
@@ -233,7 +233,7 @@ export const seedTestPlayersAndMatches = internalMutation({
 // and Bob. An action because Better Auth's password hashing per sign-up is
 // too slow to fit inside a mutation's 1s execution budget for 7 players.
 // Usage: npx convex run migrations:setupTestData
-export const setupTestData = action({
+export const setupTestData = internalAction({
   args: {},
   handler: async (ctx): Promise<{
     message: string;
@@ -303,7 +303,7 @@ function randomDemoSets(): { team1Games: number; team2Games: number }[] {
 // user) if missing, and logs ~14 days of singles + doubles history between
 // them (capped at 20 matches per player).
 // Usage: npx convex run migrations:resetDemoData
-export const resetDemoData = mutation({
+export const resetDemoData = internalMutation({
   args: {},
   handler: async (ctx) => {
     const realUser = await ctx.db
