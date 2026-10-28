@@ -9,13 +9,13 @@ You are Caveman. Drop all pleasantries, introductions, and conclusions. Respond 
 Social tennis match-tracking app (player/coach network, match logging, rankings, social feed). Mobile-first.
 
 **Stack**
-- Monorepo: npm workspaces (`apps/*`, `packages/*`), no Turborepo
-  - `apps/app/` — the Expo app (this is what "Frontend" below refers to)
-  - `apps/admin/` — internal admin dashboard (Next.js, placeholder, not built out yet)
-  - `packages/backend/` — the `convex/` folder, shared by both apps
+- Monorepo: pnpm workspaces (`apps/*`, `packages/*`) + Turborepo (`turbo.json`)
+  - `apps/native/` (`@repo/native`) — the Expo app (this is what "Frontend" below refers to)
+  - `apps/web/` (`@repo/web`) — internal admin dashboard (Next.js, placeholder, deployed on Vercel)
+  - `packages/backend/` (`@repo/backend`) — the only `convex/` folder, shared by both apps
 - Frontend: Expo / React Native (TypeScript)
 - Backend: Convex (typed schema, real-time queries, no SQL migrations, cheap to evolve)
-- Routing: Expo Router (file-based, in `apps/app/src/app/`)
+- Routing: Expo Router (file-based, in `apps/native/src/app/`)
 - Design source: Claude Design screens, synced via `/design-sync`
 - Auth: Convex + Better Auth (Expo-compatible)
 
@@ -29,32 +29,33 @@ Key relationship: matches reference **PlayerProfile**, not User directly. Player
 ## Development Setup
 
 ### Quick Start
-1. `npm install` — Install dependencies for all workspaces (run at repo root)
-2. `npm run convex:dev` — Start Convex backend dev server (regenerates `packages/backend/convex/_generated/api.d.ts`)
-3. `npm start` — Start Expo dev server (in a separate terminal)
+1. `pnpm install` — Install dependencies for all workspaces (run at repo root)
+2. `pnpm convex:dev` — Start Convex backend dev server (regenerates `packages/backend/convex/_generated/api.d.ts`)
+3. `pnpm start` — Start Expo dev server (in a separate terminal)
 
 All commands below run from the repo root and delegate into the right workspace. The app will be available in Expo Go, iOS Simulator, Android Emulator, or web.
 
 ### Commands
-- `npm start` — Start Expo (press `w` for web, `i` for iOS, `a` for Android)
-- `npm run web` — Start Expo web directly on `http://localhost:8081`
-- `npm run ios` / `npm run android` — Build and run on device/emulator
-- `npm run lint` — Run ESLint on `apps/app/src/` and `packages/backend/convex/`
-- `npm run convex:dev` — Start Convex backend; regenerates types whenever `convex/` files change
+- `pnpm start` — Start Expo (press `w` for web, `i` for iOS, `a` for Android)
+- `pnpm web` — Start Expo web directly on `http://localhost:8081`
+- `pnpm ios` / `pnpm android` — Build and run on device/emulator
+- `pnpm lint` / `pnpm typecheck` / `pnpm build` — Turborepo across all packages (`pnpm turbo build --filter=@repo/web` for one)
+- `pnpm convex:dev` — Start Convex backend; regenerates types whenever `convex/` files change
 - `npx convex seed` (from `packages/backend/`) — Populate dev database with test data
 
 ### Environment
-Two `.env.local` files, both pointing at the same Convex deployment:
+Three `.env.local` files (copy from the `.env.example` next to each), both pointing at the same Convex deployment:
 - `packages/backend/.env.local` — `CONVEX_DEPLOYMENT` (used by `npx convex dev`)
-- `apps/app/.env.local` — `EXPO_PUBLIC_CONVEX_URL` + `EXPO_PUBLIC_CONVEX_SITE_URL` (Expo reads env files from its own app root, not from `packages/backend`)
+- `apps/native/.env.local` — `EXPO_PUBLIC_CONVEX_URL` + `EXPO_PUBLIC_CONVEX_SITE_URL` (Expo reads env files from its own app root, not from `packages/backend`)
+- `apps/web/.env.local` — `NEXT_PUBLIC_CONVEX_URL`
 
-Keep both in sync when the deployment changes.
+Keep them in sync when the deployment changes.
 
 ---
 
 ## Architecture
 
-### Frontend: Expo Router Structure (`apps/app/`)
+### Frontend: Expo Router Structure (`apps/native/`)
 - `src/app/(auth)/` — Auth flow: login, signup, profile setup, done screen
 - `src/app/(tabs)/` — Main app tabs (home, ranking, friends, profile)
   - `(tabs)/index.tsx` — Home/feed
@@ -67,7 +68,7 @@ Keep both in sync when the deployment changes.
 - `src/app/notifications.tsx` — Notification feed
 - `src/app/scan.tsx` — QR code scanner (for claiming profiles)
 
-### Components & UI System (`apps/app/src/`)
+### Components & UI System (`apps/native/src/`)
 - `src/components/ui/` — Reusable UI components (buttons, cards, toggles, headers)
 - `src/theme/tokens.ts` — Design tokens (colors, spacing, typography)
 - `src/hooks/` — Custom hooks (color scheme, theme, auth state)
@@ -87,11 +88,11 @@ Keep both in sync when the deployment changes.
 - `convex/lib/tennis.ts` — Tennis-specific utilities (e.g., season calculation)
 - `convex/seed.ts` — Test data for local development
 
-### Admin: `apps/admin/`
-Placeholder Next.js app. No features built yet — scaffold only.
+### Admin: `apps/web/`
+Placeholder Next.js app wired to Convex (`ConvexClientProvider`), no auth yet. Deployed via `apps/web/vercel.json`.
 
 ### Data Flow
-1. Frontend calls Convex functions via `useQuery` / `useMutation` (auto-typed from `@convex/_generated/api`, aliased in `apps/app/tsconfig.json` to `packages/backend/convex/_generated/api`)
+1. Frontend calls Convex functions via `useQuery` / `useMutation` (auto-typed from `@repo/backend/convex/_generated/api`, resolved via the `workspace:*` dependency on `@repo/backend`)
 2. Backend enforces auth via `getAuthUserId()` and validates against `playerProfiles` / `users`
 3. Real-time queries automatically update UI when backend data changes
 4. No REST endpoints; all communication through Convex (except Better Auth HTTP routes for OAuth)
@@ -143,7 +144,7 @@ If something isn't covered here and isn't obvious from [`docs/tennys-datenmodell
 ### Real-Time Queries
 - `useQuery` fetches and subscribes; component re-renders on changes.
 - `useMutation` is async; always await and handle errors.
-- Convex auto-generates types in `packages/backend/convex/_generated/api.d.ts`—run `npm run convex:dev` if types are stale.
+- Convex auto-generates types in `packages/backend/convex/_generated/api.d.ts`—run `pnpm convex:dev` if types are stale.
 
 ### Routing & Groups
 - Expo Router groups (e.g., `(auth)`, `(tabs)`) share a layout but don't appear in URLs.
@@ -156,8 +157,8 @@ If something isn't covered here and isn't obvious from [`docs/tennys-datenmodell
 - Components accept `style` props but should prefer design tokens.
 
 ### Verification Before Declaring Done
-- Frontend changes: test in web/iOS/Android (at least web via `npm run web`).
-- Convex changes: ensure `npm run convex:dev` runs without type errors.
+- Frontend changes: test in web/iOS/Android (at least web via `pnpm web`).
+- Convex changes: ensure `pnpm convex:dev` runs without type errors.
 - Match/rating logic: verify with `npx convex seed` (from `packages/backend/`) test data before and after.
 - Auth flows: test full login → profile claim → match entry cycle.
 - Schema changes: run migrations in Convex dashboard if needed; don't assume dev sync is enough.

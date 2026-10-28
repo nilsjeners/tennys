@@ -1,9 +1,11 @@
 {
-  "name": "@tennys/backend",
+  "name": "@repo/backend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "convex dev"
+    "dev": "convex dev",
+    "lint": "eslint convex",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.12.4",

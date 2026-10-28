@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "expo-web",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "web", "-w", "apps/app"],
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@repo/native", "web"],
       "port": 8081,
       "autoPort": true
     }

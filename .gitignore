@@ -40,10 +40,10 @@ yarn-error.*
 example
 
 # generated native folders
-/apps/app/ios
-/apps/app/android
+/apps/native/ios
+/apps/native/android
 
-# Next.js (apps/admin)
+# Next.js (apps/web)
 .next/
 
 # Claude Code local prefs
