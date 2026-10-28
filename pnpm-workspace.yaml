@@ -6,3 +6,8 @@ packages:
 overrides:
   react-native: 0.85.3
   expo: ~56.0.19
+
+# Allow postinstall scripts (pnpm 10 blocks them by default).
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver
