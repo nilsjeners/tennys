@@ -1,26 +1,23 @@
 {
   "name": "tennys",
+  "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
-    "start": "npm run start -w apps/app",
-    "web": "npm run web -w apps/app",
-    "ios": "npm run ios -w apps/app",
-    "android": "npm run android -w apps/app",
-    "convex:dev": "npm run dev -w packages/backend",
-    "lint": "eslint ."
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "start": "pnpm --filter @repo/native start",
+    "web": "pnpm --filter @repo/native web",
+    "ios": "pnpm --filter @repo/native ios",
+    "android": "pnpm --filter @repo/native android",
+    "convex:dev": "pnpm --filter @repo/backend dev"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
     "eslint-config-expo": "~56.0.4",
+    "turbo": "^2.11.10",
     "typescript": "~6.0.3"
-  },
-  "version": "1.0.0",
-  "overrides": {
-    "react-native": "0.85.3",
-    "expo": "~56.0.19"
   }
 }
