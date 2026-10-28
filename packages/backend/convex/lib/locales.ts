@@ -314,6 +314,10 @@ const de = {
   "error.rateLimit": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut.",
   "error.server": "Der Server ist gerade nicht erreichbar. Bitte versuche es später erneut.",
 
+  // ── forced update ─────────────────────────────────────────────────────────
+  "update.title": "Update erforderlich",
+  "update.body": "Diese Version von Tennys wird nicht mehr unterstützt. Bitte aktualisiere die App im App Store bzw. bei Google Play.",
+
   // ── legal: terms ──────────────────────────────────────────────────────────
   "legal.updated": "Stand: 7. August 2026",
   "legal.terms.title": "Nutzungsbedingungen",
@@ -642,6 +646,10 @@ const en: Record<TranslationKey, string> = {
   "error.network": "No connection to the server. Please check your internet connection and try again.",
   "error.rateLimit": "Too many attempts. Please wait a moment and try again.",
   "error.server": "The server is unavailable right now. Please try again later.",
+
+  // ── forced update ─────────────────────────────────────────────────────────
+  "update.title": "Update required",
+  "update.body": "This version of Tennys is no longer supported. Please update the app from the App Store or Google Play.",
 
   // ── legal: terms ──────────────────────────────────────────────────────────
   // NOTE: English legal copy is a translation of the binding German original

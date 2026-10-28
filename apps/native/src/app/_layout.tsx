@@ -10,6 +10,7 @@ import { authClient } from '@/lib/auth-client';
 import { I18nProvider } from '@/lib/i18n';
 import { MatchDraftProvider } from '@/lib/matchDraft';
 import { ToastProvider } from '@/components/ui/Toast';
+import { UpdateGate } from '@/components/UpdateGate';
 import { fontMap } from '@/theme/tokens';
 
 const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL as string, {
@@ -29,6 +30,7 @@ export default function RootLayout() {
           <SafeAreaProvider>
             <StatusBar style="light" />
             <I18nProvider>
+            <UpdateGate>
             <ToastProvider>
             <MatchDraftProvider>
               <Stack screenOptions={{ headerShown: false }}>
@@ -47,6 +49,7 @@ export default function RootLayout() {
               </Stack>
             </MatchDraftProvider>
             </ToastProvider>
+            </UpdateGate>
             </I18nProvider>
           </SafeAreaProvider>
         </ConvexBetterAuthProvider>
