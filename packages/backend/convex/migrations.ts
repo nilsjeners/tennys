@@ -1,10 +1,18 @@
 import { action, internalMutation, mutation, type MutationCtx } from "./_generated/server";
 import { v } from "convex/values";
-import { internal } from "./_generated/api";
+import { components, internal } from "./_generated/api";
 import type { Id } from "./_generated/dataModel";
 import { START_RATING } from "./lib/rating";
 import { logCompletedMatch } from "./matches";
 import { createAuth } from "./auth";
+import { Migrations } from "@convex-dev/migrations";
+import schema from "./schema";
+
+// Batched, resumable schema migrations (@convex-dev/migrations). Define new ones
+// with migrations.define({ table, migrateOne }) and run them with
+//   npx convex run migrations:run '{"fn": "migrations:<name>"}'
+export const migrations = new Migrations(components.migrations, { schema });
+export const run = migrations.runner();
 
 // Shared login for every seeded test player (see setupTestData).
 const TEST_PASSWORD = "tennys123";
