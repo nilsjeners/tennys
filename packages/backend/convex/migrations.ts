@@ -120,7 +120,7 @@ export const seedTestPlayersAndMatches = internalMutation({
     players: v.array(v.object({ name: v.string(), email: v.string(), authId: v.string() })),
   },
   handler: async (ctx, { players }) => {
-    const profiles: Record<string, any> = {};
+    const profiles: Record<string, Id<"playerProfiles">> = {};
     const userIds: Record<string, Id<"users">> = {};
 
     for (const { name, email, authId } of players) {
