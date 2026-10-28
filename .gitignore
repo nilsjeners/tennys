@@ -31,7 +31,8 @@ yarn-error.*
 *.pem
 
 # local env files
-.env*.local
+.env*
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -39,8 +40,22 @@ yarn-error.*
 example
 
 # generated native folders
-/ios
-/android
+/apps/app/ios
+/apps/app/android
+
+# Next.js (apps/admin)
+.next/
 
 # Claude Code local prefs
 .claude/settings.local.json
+test-qr-codes/
+
+# secrets (never commit)
+KEYS/
+apple-client-secret.mjs
+
+# stale root prebuild from before the monorepo move
+/ios/
+
+# graphify output
+graphify-out/
