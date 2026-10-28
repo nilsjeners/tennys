@@ -26,8 +26,13 @@ User ist die Account-Ebene (Login, Auth). PlayerProfile ist die eigentliche Tenn
 - createdByCoachId (Audit, bleibt auch nach Claim erhalten)
 - claimToken (nullable, für QR-Claim)
 - claimTokenExpiresAt (nullable)
-- currentStrength (Cache des letzten StrengthSnapshot, Start 1000)
+- ratingSingles (Cache des letzten Einzel-StrengthSnapshot, Start 1000, Floor 100)
+- ratingDoubles (Cache des letzten Doppel-StrengthSnapshot, Start 1000, Floor 100)
+- currentStrength (LEGACY, ersetzt durch ratingSingles/ratingDoubles, wird nicht mehr gelesen)
+- isDeleted (optional; DSGVO-Kontolöschung anonymisiert das Profil zu "Gelöschter Spieler", entfernt Foto/ownerUserId und blendet es aus allen Listen/Suchen/Ranglisten/Setups aus — Match-Historie bleibt bestehen)
 - createdAt
+
+Einzel- und Doppel-Rating sind streng getrennt (TPRS v2); es findet kein Punktetransfer zwischen ihnen statt. Berechnung siehe `tennis_rating_konzept_v2.md` bzw. `convex/lib/rating.ts`.
 
 ### Club
 - id
@@ -45,6 +50,8 @@ User ist die Account-Ebene (Login, Auth). PlayerProfile ist die eigentliche Tenn
 - status: 'pending' | 'accepted' | 'declined'
 - createdAt
 - respondedAt
+
+Freunde-Semantik (PRD): "Freund" = accepted Connection in beliebiger Richtung. Die globale Suche erzeugt `pending` + friend_request-Notification; Annehmen → `accepted` (+ friend_accepted-Notification), Ablehnen → Datensatz wird gelöscht. QR-Scan legt direkt `accepted` an (Mutual Consent durch physische Nähe). Profile ohne ownerUserId (Coach-/Seed-Profile) können nicht konsentieren und verbinden sich daher direkt.
 
 ### Match
 - id
@@ -71,11 +78,21 @@ User ist die Account-Ebene (Login, Auth). PlayerProfile ist die eigentliche Tenn
 - id
 - playerProfileId
 - matchId
+- discipline: 'singles' | 'doubles' (welches Rating dieser Snapshot betrifft)
 - strengthBefore, strengthAfter, delta
 - season, seasonYear (denormalisiert für schnelle Season-Abfragen)
 - createdAt
 
-Ein Eintrag pro (Spieler, Match), kompletter Audit-Trail. Treibt sowohl den Verlaufs-Chart als auch die Rankings.
+Ein Eintrag pro (Spieler, Match) — auch bei delta 0 (z.B. etablierter Spieler bei neu-vs-etabliert), damit die Löschregel "letztes Match aller Teilnehmer" pro Teilnehmer greift. Kompletter Audit-Trail, treibt Verlaufs-Chart und Rankings (getrennt nach discipline).
+
+### TeamPlays (Team-Lounge, §6.2)
+- id
+- pairKey (die zwei profileIds sortiert + verkettet, reihenfolgeunabhängig)
+- profileA, profileB
+- matches (Anzahl gemeinsamer Doppel; Team-Profil ab >= 3 freigeschaltet)
+- teamName (optional), teamAvatarStorageId (optional)
+
+Flache Verknüpfungstabelle. Es werden KEINE eigenständigen Team-Ratings gespeichert — die Teamstärke wird dynamisch als Summe der `ratingDoubles` beider Spieler berechnet.
 
 ### Post
 - id
@@ -109,7 +126,7 @@ Ein Eintrag pro (Spieler, Match), kompletter Audit-Trail. Treibt sowohl den Verl
 ### Notification
 - id
 - recipientUserId
-- type: 'friend_request' | 'friend_accepted' | 'comment' | 'reaction'
+- type: 'friend_request' | 'friend_accepted' | 'comment' | 'reaction' | 'match_result' | 'new_match' | 'live_started' | 'live_cancelled'
 - payload (relevante IDs, z.B. fromUserId, matchId, connectionId)
 - isRead
 - createdAt
@@ -132,7 +149,10 @@ Ein Eintrag pro (Spieler, Match), kompletter Audit-Trail. Treibt sowohl den Verl
 
 ## Entscheidungen aus diesem Chat
 
-1. Matches sind nach dem Speichern nicht editierbar. Löschen nur möglich, wenn es das letzte Match aller Teilnehmer ist. Löschen entfernt MatchResult + die zugehörigen StrengthSnapshot-Einträge und setzt currentStrength der Beteiligten auf den vorherigen Snapshot-Wert zurück (oder 1000, falls keiner existiert).
+1. Matches sind nach dem Speichern nicht editierbar. Löschen nur möglich, wenn es das letzte Match aller Teilnehmer ist. Löschen entfernt MatchResult + die zugehörigen StrengthSnapshot-Einträge und setzt das Rating der Match-Disziplin (ratingSingles bzw. ratingDoubles) der Beteiligten auf den vorherigen Snapshot-Wert derselben Disziplin zurück (oder 1000, falls keiner existiert). Bei Doppeln wird zusätzlich der TeamPlays-Zähler des/der Paare(s) dekrementiert.
+6. Rating (TPRS v2): Einzel und Doppel sind zwei getrennte Ratings pro Spieler. Berechnung zero-sum über die Summe aller Games (nicht Sätze), Laplace-Glättung +1, Pott-System 10%, Floor 100, kein Ceiling. Sonderfälle für neue Spieler (neu-vs-neu → 1000/1000; neu-vs-etabliert → Kalibrierung auf das Rating des Etablierten ±10 %, per `tanh` über den geglätteten Games-Vorsprung gedämpft, Etablierter bewegt sich spiegelbildlich mit ∓10 %). Team-Ratings werden nie gespeichert, Teamstärke = Summe der ratingDoubles.
+
+> **Änderung ggü. Ursprungs-Spec (§4.2):** dort war der Etablierte Δ=0 und der Neuling bekam `rB × Games-Verhältnis` **ohne Deckel**. Ein glattes 6:0 6:0 im Debüt erzeugte damit ein Rating von 13000, eine Kanterniederlage fiel sofort auf den Floor — der Fehler potenzierte sich zudem, sobald der nächste Neuling gegen einen bereits verzerrten Gegner debütierte. Die ±10 %-Schranke ersetzt das bewusst; sie ist kein Bug, der zurückzudrehen wäre. Ratings sind abgeleitete Daten: nach jeder Formeländerung müssen sie neu berechnet werden — dafür gibt es bewusst kein In-App-Tool, das ist ein einmaliger Vorgang außerhalb der App.
 2. Reactions: mehrere tennis-spezifische Typen, nicht nur ein Like.
 3. Notifications sind eine eigene, gespeicherte Entität mit Lese-Status, kein Live-Computed-Ansatz.
 4. Season-Zeiträume sind global fix (z.B. April–September Sommer, Oktober–März Winter), gleich für alle Clubs. Deshalb kein eigenes Season-Entity, nur eine berechnete, denormalisierte Spalte auf Match.

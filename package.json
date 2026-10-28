@@ -1,55 +1,26 @@
 {
   "name": "tennys",
-  "main": "expo-router/entry",
-  "version": "1.0.0",
-  "dependencies": {
-    "@better-auth/expo": "1.6.20",
-    "@convex-dev/better-auth": "^0.12.4",
-    "@expo-google-fonts/bebas-neue": "^0.4.1",
-    "@expo-google-fonts/dm-sans": "^0.4.2",
-    "@expo-google-fonts/jetbrains-mono": "^0.4.1",
-    "@expo/ui": "~56.0.18",
-    "@expo/vector-icons": "^15.0.2",
-    "better-auth": "1.6.20",
-    "convex": "^1.42.0",
-    "expo": "~56.0.12",
-    "expo-constants": "~56.0.18",
-    "expo-dev-client": "~56.0.20",
-    "expo-device": "~56.0.4",
-    "expo-font": "~56.0.7",
-    "expo-glass-effect": "~56.0.4",
-    "expo-image": "~56.0.11",
-    "expo-linking": "~56.0.14",
-    "expo-network": "~56.0.5",
-    "expo-router": "~56.2.11",
-    "expo-secure-store": "~56.0.4",
-    "expo-splash-screen": "~56.0.10",
-    "expo-status-bar": "~56.0.4",
-    "expo-symbols": "~56.0.6",
-    "expo-system-ui": "~56.0.5",
-    "expo-web-browser": "~56.0.5",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-native": "0.85.3",
-    "react-native-gesture-handler": "~2.31.1",
-    "react-native-reanimated": "4.3.1",
-    "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "4.25.2",
-    "react-native-svg": "15.15.4",
-    "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.8.3"
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "npm run start -w apps/app",
+    "web": "npm run web -w apps/app",
+    "ios": "npm run ios -w apps/app",
+    "android": "npm run android -w apps/app",
+    "convex:dev": "npm run dev -w packages/backend",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~56.0.4",
     "typescript": "~6.0.3"
   },
-  "scripts": {
-    "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web",
-    "lint": "expo lint"
-  },
-  "private": true
+  "version": "1.0.0",
+  "overrides": {
+    "react-native": "0.85.3",
+    "expo": "~56.0.19"
+  }
 }
