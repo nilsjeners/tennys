@@ -3,6 +3,12 @@
     "name": "Tennys",
     "slug": "Tennys",
     "version": "1.0.0",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ff7b5453-0aa9-43c7-ba9b-43351d75b7b8"
+    },
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "tennys",
