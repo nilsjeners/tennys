@@ -39,6 +39,14 @@ export async function currentProfile(
   return { user, profile };
 }
 
+// Throws unless the signed-in app user has the "admin" role.
+export async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<Doc<"users">> {
+  const au = await authUser(ctx);
+  const user = au ? await appUserFor(ctx, au) : null;
+  if (!user?.roles.includes("admin")) throw new Error("Nicht berechtigt.");
+  return user;
+}
+
 // The signed-in account + tennis profile, or null when not signed in / no profile yet.
 export const me = query({
   args: {},

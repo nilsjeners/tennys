@@ -41,7 +41,7 @@ All commands below run from the repo root and delegate into the right workspace.
 - `pnpm ios` / `pnpm android` — Build and run on device/emulator
 - `pnpm lint` / `pnpm typecheck` / `pnpm build` — Turborepo across all packages (`pnpm turbo build --filter=@repo/web` for one)
 - `pnpm convex:dev` — Start Convex backend; regenerates types whenever `convex/` files change
-- `npx convex seed` (from `packages/backend/`) — Populate dev database with test data
+- `npx convex run seed:run '{"email":"you@example.com"}'` (from `packages/backend/`) — Populate demo data for one user
 
 ### Environment
 Three `.env.local` files (copy from the `.env.example` next to each), both pointing at the same Convex deployment:
@@ -158,7 +158,7 @@ If something isn't covered here and isn't obvious from [`docs/tennys-datenmodell
 ### Verification Before Declaring Done
 - Frontend changes: test in web/iOS/Android (at least web via `pnpm web`).
 - Convex changes: ensure `pnpm convex:dev` runs without type errors.
-- Match/rating logic: verify with `npx convex seed` (from `packages/backend/`) test data before and after.
+- Match/rating logic: verify with `seed:run` (from `packages/backend/`) test data before and after.
 - Auth flows: test full login → profile claim → match entry cycle.
 - Schema changes: run migrations in Convex dashboard if needed; don't assume dev sync is enough.
 

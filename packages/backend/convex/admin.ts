@@ -1,13 +1,10 @@
 import { query } from "./_generated/server";
 import { avatarUrl } from "./lib/avatar";
+import { requireAdmin } from "./users";
 
-// Admin dashboard queries (consumed by the separate TennysDashboard Next.js app,
-// pointed at this same deployment). Read-only.
-//
-// ponytail: these queries are currently ungated — there is no Convex session on
-// the dashboard side, so protection lives solely at the dashboard's password
-// gate. Before this goes beyond local use, verify roles.includes("admin") via a
-// shared secret or a real admin session.
+// Admin dashboard queries (apps/web, pointed at this same deployment). Read-only.
+// Gated on the signed-in user's "admin" role, so the dashboard needs a real
+// Better Auth session for an admin account.
 
 const WEEK = 7 * 24 * 60 * 60 * 1000;
 
@@ -15,6 +12,7 @@ const WEEK = 7 * 24 * 60 * 60 * 1000;
 export const listUsers = query({
   args: {},
   handler: async (ctx) => {
+    await requireAdmin(ctx);
     const users = await ctx.db.query("users").collect();
     return Promise.all(
       users.map(async (u) => {
@@ -41,6 +39,7 @@ export const listUsers = query({
 export const stats = query({
   args: {},
   handler: async (ctx) => {
+    await requireAdmin(ctx);
     const users = await ctx.db.query("users").collect();
     const now = Date.now();
     return {

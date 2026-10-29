@@ -23,7 +23,6 @@ export default function ProfileSetup() {
   const t = useT();
   const me = useQuery(api.users.me, {});
   const createProfile = useMutation(api.users.createProfile);
-  const seed = useMutation(api.seed.run);
   const { pickImage, takePhoto, uploadAvatar } = useAvatarUpload();
 
   const [displayName, setDisplayName] = useState('');
@@ -63,7 +62,6 @@ export default function ProfileSetup() {
     try {
       await createProfile({ displayName: displayName.trim() });
       if (photo) await uploadAvatar(photo.uri, photo.mimeType); // profile now exists
-      await seed({});
       router.replace('/(auth)/done');
     } catch (e) {
       setBusy(false);
