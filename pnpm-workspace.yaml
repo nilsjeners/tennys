@@ -4,8 +4,8 @@ packages:
 
 # Single React Native / Expo version across the monorepo (Expo requirement).
 overrides:
-  react-native: 0.85.3
-  expo: ~56.0.19
+  react-native: 0.86.3
+  expo: ~57.0.31
 
 # Allow postinstall scripts (pnpm 10 blocks them by default).
 onlyBuiltDependencies:
