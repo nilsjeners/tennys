@@ -71,7 +71,6 @@ Keep them in sync when the deployment changes.
 ### Components & UI System (`apps/native/src/`)
 - `src/components/ui/` — Reusable UI components (buttons, cards, toggles, headers)
 - `src/theme/tokens.ts` — Design tokens (colors, spacing, typography)
-- `src/hooks/` — Custom hooks (color scheme, theme, auth state)
 
 ### Backend: Convex Functions (`packages/backend/convex/`)
 - `convex/schema.ts` — Schema definition (all tables, indexes, validators)
