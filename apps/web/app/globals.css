@@ -157,9 +157,33 @@ body {
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 24px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
   font-size: 13px;
   color: var(--ink-muted);
 }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.footer a { color: var(--ink-secondary); text-decoration: none; }
+.footer a:hover { color: var(--ink); text-decoration: underline; }
+
+/* ---------- legal subpages ---------- */
+
+.legal-head { background: var(--court-green); padding: 20px 24px; }
+.legal-head .brand { max-width: 720px; margin: 0 auto; }
+.legal {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  overflow-wrap: anywhere;
+}
+.legal h1 { margin: 0 0 20px; font-size: clamp(48px, 10vw, 72px); line-height: 0.95; color: var(--court-green); }
+.legal h1:not(:first-child) { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); }
+.legal h2 { margin: 28px 0 8px; font-size: 17px; font-weight: 700; }
+.legal p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-secondary); white-space: pre-line; }
+.legal a { color: var(--court-green-light); font-weight: 600; }
+.legal .lang-switch { margin-bottom: 16px; font-size: 14px; }
 
 /* ---------- admin login ---------- */
 

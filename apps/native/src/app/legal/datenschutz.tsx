@@ -1,13 +1,13 @@
 import { useRouter } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 
+import { PRIVACY_SECTIONS as SECTIONS } from '@repo/backend/convex/lib/locales';
 import { Header } from '@/components/ui/Header';
 import { useT } from '@/lib/i18n';
 import { colors, fonts } from '@/theme/tokens';
 
-// Section keys in display order. Copy lives in convex/lib/locales.ts under
-// `legal.privacy.<key>.title` / `.body` and is editable in the Convex dashboard.
-const SECTIONS = ['controller', 'data', 'purpose', 'rights', 'contact'] as const;
+// Copy lives in convex/lib/locales.ts under `legal.privacy.<key>.title` /
+// `.body` and is editable in the Convex dashboard.
 
 export default function Datenschutz() {
   const router = useRouter();
