@@ -1,0 +1,82 @@
+{
+  "expo": {
+    "name": "Tennys",
+    "slug": "Tennys",
+    "version": "1.0.0",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ff7b5453-0aa9-43c7-ba9b-43351d75b7b8"
+    },
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "tennys",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "app.jeners.Tennys",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "appleTeamId": "A6HZA96Q8F"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#253F36",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA"
+      ],
+      "package": "app.jeners.Tennys"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#253F36",
+          "android": {
+            "image": "./assets/images/splash-icon.png",
+            "imageWidth": 76
+          }
+        }
+      ],
+      "expo-secure-store",
+      "expo-font",
+      "expo-notifications",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Tennys braucht Zugriff auf deine Fotos, um ein Profilbild zu setzen."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Tennys braucht Zugriff auf deine Kamera, um QR-Codes zu scannen."
+        }
+      ],
+      "expo-web-browser",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ff7b5453-0aa9-43c7-ba9b-43351d75b7b8"
+      }
+    }
+  }
+}
