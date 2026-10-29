@@ -1,6 +1,6 @@
-import { mutation } from "./_generated/server";
+import { v } from "convex/values";
+import { internalMutation } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
-import { currentProfile } from "./users";
 import { logCompletedMatch } from "./matches";
 import { seasonForDate } from "./lib/tennis";
 
@@ -21,12 +21,23 @@ const OPPONENTS: Opp[] = [
   { name: "Robin T.", username: "robint", skill: "beginner", strength: 940, city: "München" },
 ];
 
-// Populate demo data for the signed-in user. Idempotent: no-op if data exists.
-export const run = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const me = await currentProfile(ctx);
-    if (!me) throw new Error("Kein Profil — bitte zuerst anlegen.");
+// Populate demo data for the given user. Idempotent: no-op if data exists.
+//   npx convex run seed:run '{"email":"you@example.com"}'
+export const run = internalMutation({
+  args: { email: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_email", (q) => q.eq("email", args.email))
+      .unique();
+    const profile = user
+      ? await ctx.db
+          .query("playerProfiles")
+          .withIndex("by_owner", (q) => q.eq("ownerUserId", user._id))
+          .unique()
+      : null;
+    if (!user || !profile) throw new Error("Kein Profil — bitte zuerst anlegen.");
+    const me = { user, profile };
 
     const alreadyMine = await ctx.db
       .query("matches")
