@@ -4,9 +4,23 @@
     {
       "name": "expo-web",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@repo/native", "web"],
+      "runtimeArgs": [
+        "--filter",
+        "@repo/native",
+        "web"
+      ],
       "port": 8081,
       "autoPort": true
+    },
+    {
+      "name": "web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--filter",
+        "@repo/web",
+        "dev"
+      ],
+      "port": 3000
     }
   ]
 }
