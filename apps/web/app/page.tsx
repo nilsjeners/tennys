@@ -1,4 +1,5 @@
 import { Logo } from "./Logo";
+import { SiteFooter } from "./SiteFooter";
 
 const features = [
   { title: "Matches loggen", text: "Einzel und Doppel in Sekunden eintragen — Satz für Satz." },
@@ -43,7 +44,7 @@ export default function Home() {
         ))}
       </section>
 
-      <footer className="footer">© {new Date().getFullYear()} Tennys</footer>
+      <SiteFooter />
     </main>
   );
 }
