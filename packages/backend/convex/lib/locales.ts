@@ -319,41 +319,47 @@ const de = {
   "update.body": "Diese Version von Tennys wird nicht mehr unterstützt. Bitte aktualisiere die App im App Store bzw. bei Google Play.",
 
   // ── legal: terms ──────────────────────────────────────────────────────────
-  "legal.updated": "Stand: 7. August 2026",
+  "legal.updated": "Stand: 29. Oktober 2026",
   "legal.terms.title": "Nutzungsbedingungen",
   "legal.terms.scope.title": "Geltungsbereich",
   "legal.terms.scope.body":
-    'Diese Nutzungsbedingungen regeln die Nutzung der App tennys ("tennys", "wir", "uns") durch registrierte und nicht registrierte Nutzer:innen. tennys wird betrieben von der Tennys GmbH. Mit der Erstellung eines Kontos oder der Nutzung der App erklärst du dich mit diesen Bedingungen einverstanden.',
+    'Diese Nutzungsbedingungen regeln die Nutzung der App tennys ("tennys", "wir", "uns") durch registrierte und nicht registrierte Nutzer:innen. tennys wird betrieben von der Jeners Consulting GmbH. Mit der Erstellung eines Kontos oder der Nutzung der App erklärst du dich mit diesen Bedingungen einverstanden.',
   "legal.terms.usage.title": "Nutzung der App",
   "legal.terms.usage.body":
     "tennys dient der Erfassung und Verwaltung von Tennisspielen, dem Aufbau eines Spieler:innen-Netzwerks sowie der Darstellung von Ranglisten und Spielstatistiken. Du verpflichtest dich, die App nur für diese Zwecke und im Einklang mit geltendem Recht zu nutzen. Eingegebene Spielergebnisse und Profildaten müssen wahrheitsgemäß sein. Missbrauch, insbesondere die Erstellung falscher Profile oder manipulierte Spielergebnisse, kann zur Sperrung des Kontos führen.",
   "legal.terms.liability.title": "Haftung",
   "legal.terms.liability.body":
-    'Die App wird "wie besehen" bereitgestellt. Tennys GmbH übernimmt keine Gewähr für die ununterbrochene Verfügbarkeit der App, die Richtigkeit berechneter Ranglisten und Bewertungen oder für Inhalte, die von Nutzer:innen eingestellt werden. Eine Haftung für mittelbare Schäden oder entgangenen Gewinn ist, soweit gesetzlich zulässig, ausgeschlossen.',
+    'Die App wird "wie besehen" bereitgestellt. Jeners Consulting GmbH übernimmt keine Gewähr für die ununterbrochene Verfügbarkeit der App, die Richtigkeit berechneter Ranglisten und Bewertungen oder für Inhalte, die von Nutzer:innen eingestellt werden. Eine Haftung für mittelbare Schäden oder entgangenen Gewinn ist, soweit gesetzlich zulässig, ausgeschlossen.',
   "legal.terms.changes.title": "Änderungen der AGB",
   "legal.terms.changes.body":
     "Wir behalten uns vor, diese Nutzungsbedingungen bei Bedarf anzupassen, etwa bei neuen Funktionen oder geänderten rechtlichen Anforderungen. Über wesentliche Änderungen informieren wir dich rechtzeitig in der App. Die fortgesetzte Nutzung nach Inkrafttreten der Änderungen gilt als Zustimmung.",
   "legal.terms.contact.title": "Kontakt",
   "legal.terms.contact.body":
-    "Fragen zu diesen Nutzungsbedingungen richtest du bitte an hallo@tennys.app.\nTennys GmbH, Torstraße 45, 10119 Berlin",
+    "Fragen zu diesen Nutzungsbedingungen richtest du bitte an hallo@tennys.app.\nJeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus",
 
   // ── legal: privacy ────────────────────────────────────────────────────────
   "legal.privacy.title": "Datenschutz",
   "legal.privacy.controller.title": "Verantwortliche Stelle",
   "legal.privacy.controller.body":
-    "Verantwortlich für die Verarbeitung deiner personenbezogenen Daten im Sinne der DSGVO ist Tennys GmbH, Torstraße 45, 10119 Berlin. Bei Fragen zum Datenschutz erreichst du uns unter datenschutz@tennys.app.",
+    "Verantwortlich für die Verarbeitung deiner personenbezogenen Daten im Sinne der DSGVO ist Jeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus. Bei Fragen zum Datenschutz erreichst du uns unter hallo@tennys.app.",
   "legal.privacy.data.title": "Erhobene Daten",
   "legal.privacy.data.body":
-    "Wir verarbeiten insbesondere: Kontodaten (E-Mail-Adresse, Name), Profildaten (Anzeigename, Profilbild, Verein), Spieldaten (Ergebnisse, Gegner:innen, Zeitpunkt, berechnete Stärkewerte) sowie technische Daten (Geräteinformationen, Nutzungsprotokolle), die für den Betrieb der App notwendig sind.",
+    "Wir verarbeiten: Kontodaten (E-Mail-Adresse, Anmeldeart, bei Anmeldung mit Apple oder Google die von dort übermittelte Kennung), Profildaten (Anzeigename, Benutzername, Geschlecht, Spielhand, Spielstärke, Stadt, Profilbild, Verein), Spieldaten (Ergebnisse, Mit- und Gegenspieler:innen, Zeitpunkt, berechnete Wertungen), soziale Inhalte (Freundschaften, Beiträge, Kommentare, Reaktionen) sowie technische Daten (Push-Token deines Geräts, Spracheinstellung, Zeitpunkt der letzten Nutzung). Wir nutzen keine Werbe- oder Analyse-Tracker und verkaufen keine Daten.",
   "legal.privacy.purpose.title": "Zweck der Verarbeitung",
   "legal.privacy.purpose.body":
     "Deine Daten werden verarbeitet, um die App bereitzustellen und zu betreiben, dein Profil und deine Spielhistorie darzustellen, Ranglisten und Bewertungen zu berechnen, dich mit anderen Nutzer:innen zu vernetzen sowie um dich über relevante Aktivitäten (z. B. Freundschaftsanfragen, Kommentare) zu benachrichtigen. Rechtsgrundlage ist die Erfüllung des Nutzungsvertrags (Art. 6 Abs. 1 lit. b DSGVO) sowie, soweit erforderlich, deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).",
-  "legal.privacy.rights.title": "Rechte der Nutzer:innen",
+  "legal.privacy.permissions.title": "Berechtigungen auf deinem Gerät",
+  "legal.privacy.permissions.body":
+    "Die App fragt nur bei Bedarf nach Zugriff: Kamera zum Scannen von QR-Codes (Bilder werden nicht gespeichert), Fotos zum Setzen eines Profilbilds (nur das ausgewählte Bild wird hochgeladen) und Mitteilungen für Push-Benachrichtigungen. Du kannst jede Berechtigung jederzeit in den Systemeinstellungen widerrufen.",
+  "legal.privacy.recipients.title": "Dienstleister und Übermittlung in Drittländer",
+  "legal.privacy.recipients.body":
+    "Wir setzen folgende Auftragsverarbeiter ein: Convex, Inc. (USA) für Datenbank und Server, 650 Industries, Inc. / Expo (USA) für Push-Benachrichtigungen und App-Updates, Vercel Inc. (USA) für das Hosting der Website. Push-Nachrichten werden über Apple (APNs) bzw. Google (FCM) zugestellt. Meldest du dich mit Apple oder Google an, gelten zusätzlich deren Datenschutzbestimmungen. Übermittlungen in die USA erfolgen auf Grundlage des EU-US Data Privacy Framework bzw. der EU-Standardvertragsklauseln.",
+  "legal.privacy.rights.title": "Speicherdauer und deine Rechte",
   "legal.privacy.rights.body":
-    "Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner Daten sowie auf Datenübertragbarkeit. Du kannst dein Konto samt Profildaten jederzeit über die Kontoeinstellungen löschen. Zudem steht dir ein Beschwerderecht bei der zuständigen Datenschutzaufsichtsbehörde zu.",
+    "Wir speichern deine Daten, solange dein Konto besteht. Du kannst dein Konto jederzeit in der App unter Profil → Einstellungen löschen; dein Profil wird dann gelöscht bzw. anonymisiert (\"Gelöschter Spieler\"), damit gemeinsame Spiele anderer Nutzer:innen erhalten bleiben. Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde, z. B. der LDI NRW.",
   "legal.privacy.contact.title": "Kontakt",
   "legal.privacy.contact.body":
-    "Für Anfragen zu deinen Daten oder zur Ausübung deiner Rechte wende dich an datenschutz@tennys.app.\nTennys GmbH, Torstraße 45, 10119 Berlin",
+    "Für Anfragen zu deinen Daten oder zur Ausübung deiner Rechte wende dich an hallo@tennys.app.\nJeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus",
 } as const;
 
 export type TranslationKey = keyof typeof de;
@@ -654,41 +660,51 @@ const en: Record<TranslationKey, string> = {
   // ── legal: terms ──────────────────────────────────────────────────────────
   // NOTE: English legal copy is a translation of the binding German original
   // and has not been reviewed by counsel. Have a lawyer review before shipping.
-  "legal.updated": "Last updated: 7 August 2026",
+  "legal.updated": "Last updated: 29 October 2026",
   "legal.terms.title": "Terms of Use",
   "legal.terms.scope.title": "Scope",
   "legal.terms.scope.body":
-    'These Terms of Use govern the use of the tennys app ("tennys", "we", "us") by registered and unregistered users. tennys is operated by Tennys GmbH. By creating an account or using the app you agree to these terms.',
+    'These Terms of Use govern the use of the tennys app ("tennys", "we", "us") by registered and unregistered users. tennys is operated by Jeners Consulting GmbH. By creating an account or using the app you agree to these terms.',
   "legal.terms.usage.title": "Using the app",
   "legal.terms.usage.body":
     "tennys is for recording and managing tennis matches, building a network of players, and displaying rankings and match statistics. You agree to use the app only for these purposes and in accordance with applicable law. Match results and profile data you enter must be truthful. Misuse — in particular creating false profiles or manipulating match results — may lead to suspension of your account.",
   "legal.terms.liability.title": "Liability",
   "legal.terms.liability.body":
-    'The app is provided "as is". Tennys GmbH gives no warranty for uninterrupted availability of the app, for the accuracy of calculated rankings and ratings, or for content submitted by users. Liability for indirect damages or lost profit is excluded to the extent permitted by law.',
+    'The app is provided "as is". Jeners Consulting GmbH gives no warranty for uninterrupted availability of the app, for the accuracy of calculated rankings and ratings, or for content submitted by users. Liability for indirect damages or lost profit is excluded to the extent permitted by law.',
   "legal.terms.changes.title": "Changes to these terms",
   "legal.terms.changes.body":
     "We may adapt these Terms of Use where necessary, for example for new features or changed legal requirements. We will inform you of material changes in good time within the app. Continued use after the changes take effect constitutes acceptance.",
   "legal.terms.contact.title": "Contact",
   "legal.terms.contact.body":
-    "Please direct questions about these Terms of Use to hallo@tennys.app.\nTennys GmbH, Torstraße 45, 10119 Berlin, Germany",
+    "Please direct questions about these Terms of Use to hallo@tennys.app.\nJeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus, Germany",
 
   // ── legal: privacy ────────────────────────────────────────────────────────
   "legal.privacy.title": "Privacy",
   "legal.privacy.controller.title": "Data controller",
   "legal.privacy.controller.body":
-    "The controller for the processing of your personal data within the meaning of the GDPR is Tennys GmbH, Torstraße 45, 10119 Berlin, Germany. For privacy questions you can reach us at datenschutz@tennys.app.",
+    "The controller for the processing of your personal data within the meaning of the GDPR is Jeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus, Germany. For privacy questions you can reach us at hallo@tennys.app.",
   "legal.privacy.data.title": "Data we collect",
   "legal.privacy.data.body":
-    "We process in particular: account data (email address, name), profile data (display name, profile picture, club), match data (results, opponents, timestamps, calculated ratings) and technical data (device information, usage logs) required to operate the app.",
+    "We process: account data (email address, sign-in method and, when signing in with Apple or Google, the identifier they provide), profile data (display name, username, gender, playing hand, skill level, city, profile picture, club), match data (results, partners and opponents, timestamps, calculated ratings), social content (friendships, posts, comments, reactions) and technical data (your device's push token, language setting, time of last use). We use no advertising or analytics trackers and do not sell data.",
   "legal.privacy.purpose.title": "Purpose of processing",
   "legal.privacy.purpose.body":
     "Your data is processed to provide and operate the app, display your profile and match history, calculate rankings and ratings, connect you with other users, and notify you about relevant activity (e.g. friend requests, comments). The legal basis is performance of the user contract (Art. 6(1)(b) GDPR) and, where required, your consent (Art. 6(1)(a) GDPR).",
-  "legal.privacy.rights.title": "Your rights",
+  "legal.privacy.permissions.title": "Device permissions",
+  "legal.privacy.permissions.body":
+    "The app only asks for access when needed: camera to scan QR codes (no images are stored), photos to set a profile picture (only the selected image is uploaded) and notifications for push messages. You can revoke any permission at any time in your system settings.",
+  "legal.privacy.recipients.title": "Service providers and transfers outside the EU",
+  "legal.privacy.recipients.body":
+    "We use the following processors: Convex, Inc. (USA) for database and servers, 650 Industries, Inc. / Expo (USA) for push notifications and app updates, Vercel Inc. (USA) for hosting the website. Push messages are delivered via Apple (APNs) or Google (FCM). If you sign in with Apple or Google, their privacy policies apply as well. Transfers to the USA are based on the EU-US Data Privacy Framework or the EU Standard Contractual Clauses.",
+  "legal.privacy.rights.title": "Retention and your rights",
   "legal.privacy.rights.body":
-    "You have the right to access, rectification, erasure and restriction of processing of your data, as well as data portability. You can delete your account together with your profile data at any time from the account settings. You also have the right to lodge a complaint with the competent data protection supervisory authority.",
+    "We store your data for as long as your account exists. You can delete your account at any time in the app under Profile → Settings; your profile is then deleted or anonymised (\"Deleted player\") so that shared matches of other users remain intact. You have the right to access, rectification, erasure, restriction of processing, data portability and objection, and the right to lodge a complaint with a data protection supervisory authority, e.g. the LDI NRW.",
   "legal.privacy.contact.title": "Contact",
   "legal.privacy.contact.body":
-    "For requests about your data or to exercise your rights, contact datenschutz@tennys.app.\nTennys GmbH, Torstraße 45, 10119 Berlin, Germany",
+    "For requests about your data or to exercise your rights, contact hallo@tennys.app.\nJeners Consulting GmbH, Spitzwegstr. 10, 42579 Heiligenhaus, Germany",
 };
 
 export const LOCALES: Record<LocaleCode, Record<string, string>> = { de, en };
+
+// Privacy policy section keys in display order (`legal.privacy.<key>.title` /
+// `.body`). Shared by the app screen and the website's /datenschutz page.
+export const PRIVACY_SECTIONS = ["controller", "data", "purpose", "permissions", "recipients", "rights", "contact"] as const;
