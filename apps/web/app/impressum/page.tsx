@@ -17,7 +17,7 @@ export default function Impressum() {
       </section>
       <section>
         <h2>Vertreten durch</h2>
-        <p>TODO Geschäftsführer:in</p>
+        <p>Geschäftsführer: Dr. Nils Jeners</p>
       </section>
       <section>
         <h2>Kontakt</h2>
@@ -28,17 +28,17 @@ export default function Impressum() {
       <section>
         <h2>Registereintrag</h2>
         <p>
-          Registergericht: TODO{"\n"}
-          Registernummer: TODO
+          Registergericht: Amtsgericht Wuppertal{"\n"}
+          Registernummer: HRB 36581
         </p>
       </section>
       <section>
         <h2>Umsatzsteuer-ID</h2>
-        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: TODO</p>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE460679961</p>
       </section>
       <section>
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>TODO Name, Anschrift wie oben</p>
+        <p>Dr. Nils Jeners, Anschrift wie oben</p>
       </section>
       <section>
         <h2>Verbraucherstreitbeilegung</h2>
